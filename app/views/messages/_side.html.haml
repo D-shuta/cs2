@@ -2,21 +2,18 @@
   .side__header
     .side__header--box
       .side__header--text
-        田中
+        =current_user.name
       .side__header__icon
-        =link_to "#" do
+        =link_to new_group_path do
           = icon('fa', 'edit') 
-        =link_to "#" do
+        =link_to edit_user_path(current_user) do
           = icon('fa', 'cog') 
   .side__contents
-    .side__contents--box
-      .side__contents--one
-        名前
-      .side__contents--twe
-        投稿はありません
-    .side__contents--box
-      .side__contents--one
-        名前
-      .side__contents--twe
-        投稿はありません
-        
+    - current_user.groups.each do |group|
+      .side__contents--box
+        =link_to "#" do
+          .side__contents--one
+            = group.name
+          .side__contents--twe
+            投稿はありません
+            
