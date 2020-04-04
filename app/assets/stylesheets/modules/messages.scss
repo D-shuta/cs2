@@ -140,15 +140,17 @@
         width: $width;
         padding: 10px 0;
         display: flex;
-        justify-content: space-between;
         text-align: center;
         line-height: 50px;
+        
           &--text{
             width: 80%;
+            position: relative;
           }
           &--icon{
             position: absolute;
-
+            display: flex;
+            
           }
     }
       &--sousin{

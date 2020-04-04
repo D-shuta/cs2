@@ -2,37 +2,40 @@
   .main__header
     .main__header--one
       .main__header--name
-        田中
+        = @group.name
       .main__header--text
-        menber:D
+      - @group.group_users.each do |group_user|
+        menber:
+        = group_user.user.name
     .main__header--two
-      = link_to "#", class: "btn" do
+      = link_to edit_group_path(@group), class: "btn" do
         ボタン
   .main__contents
-    .main__contents--top
-      .main__contents--box
-        .main__contents--name
-          たなか
-        .main__contents--time
-          14:00
-      .main__contents--come
-        おはよう
-    .main__contents--top
-      .main__contents--box
-        .main__contents--name
-          たなか
-        .main__contents--time
-          14:00
-      .main__contents--come
-        おはよう
+    = render @messages
+    -# .main__contents--top
+    -#   .main__contents--box
+    -#     .main__contents--name
+    -#       たなか
+    -#     .main__contents--time
+    -#       14:00
+    -#   .main__contents--come
+    -#     おはよう
+    -# .main__contents--top
+    -#   .main__contents--box
+    -#     .main__contents--name
+    -#       たなか
+    -#     .main__contents--time
+    -#       14:00
+    -#   .main__contents--come
+    -#     おはよう
   .main__footer
     .main__footer--box
       .main__footer--come
-        .main__footer--text
-          ああ
-        .main__footer--icon
-          = label :image, class: "" do
-            = icon('fa', 'image', class: 'icon') 
-      .main__footer--sousin
-        = link_to "#", class: "btn" do
-          コメント送信
+        = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'main__footer--text', placeholder: 'type a message'
+          .main__footer--icon
+            = f.label :image, class: 'main__footer--come' do
+              = icon('fas', 'image', class: 'icon')
+              = f.file_field :image, class: 'hidden'
+              = f.submit 'Send', class:'form__submit main__footer--sousin'
+        

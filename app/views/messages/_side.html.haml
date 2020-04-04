@@ -11,9 +11,9 @@
   .side__contents
     - current_user.groups.each do |group|
       .side__contents--box
-        =link_to "#" do
+        = link_to group_messages_path(group) do
           .side__contents--one
             = group.name
           .side__contents--twe
-            投稿はありません
+            = group.show_last_message
             
